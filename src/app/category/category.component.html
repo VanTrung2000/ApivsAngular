@@ -1,0 +1,84 @@
+<h1>Category</h1>
+<button class="btn btn-success" (click)="opModal(true,null)" >Add New Category</button>
+<table border="1" style="width:35%" *ngIf="listCategory">
+  <thead>
+    <tr>
+    <th width="10%">CategoryId</th>
+    <th width="15%">Category Name</th>
+    <th width="15%">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cate of res" >
+      <td>{{ cate.categoryId }}</td>
+      <td>{{ cate.categoryName }}</td>
+      <td style=" text-align: center">
+        <button class="btn btn-info" (click)="opModal(false,cate)">Edit</button>
+        <button class="btn btn-danger" (click)="opModal1(false,cate);">Delete</button>
+      </td>
+    </tr>
+
+  </tbody>
+
+
+
+  <div id="mo" class="modal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" *ngIf="!isEdit">Add new Category</h5>
+          <h5 class="modal-title" *ngIf="isEdit">Update new Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row" *ngIf="isEdit">
+            <div class="col-3">CategoryId</div>
+            <div class="col-7">
+              <input class="form-control" type="number" [(ngModel)] ="category.categoryId" >
+            </div>
+          </div>
+          <br>
+            <div class="row">
+              <div class="col-3">CategoryName</div>
+              <div class="col-7">
+                <input class="form-control" [(ngModel)] ="category.categoryName" >
+              </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="updateCategory();">Update</button>
+          <button type="button" class="btn btn-info"(click)="addCategory();">Add</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="mo1" class="modal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-3">CategoryId</div>
+            <div class="col-7">
+              <input class="form-control" type="number" [(ngModel)] ="category.categoryId" >
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="deleteCategory();">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
